@@ -1,3 +1,7 @@
+# UNIVERSIDAD DEL VALLE DE GUATEMALA
+# Eliazar Jose Pablo Canastuj Matias
+# 23384
+
 import networkx as nx
 import matplotlib.pyplot as plt
 
@@ -54,16 +58,15 @@ def dijkstra(grafo, estacion_salida):
 
     return distancias, anteriores
 
-if __name__ == "__main__":
-    grafo = crear_grafo()
+
+grafo = crear_grafo()    
+estacion_salida = input("Ingrese la estación de salida: ")
+# Mostrar destinos desde una estación de salida
+mostrar_destinos(grafo, estacion_salida)
     
-    estacion_salida = input("Ingrese la estación de salida: ")
-    # Mostrar destinos desde una estación de salida
-    mostrar_destinos(grafo, estacion_salida)
-    
-    # Encontrar las mejores rutas usando Dijkstra
-    distancias, anteriores = dijkstra(grafo, estacion_salida)
-    print("\nMejores rutas:")
-    for destino, distancia in distancias.items():
-        print(f" {destino} con costo de {distancia}")
-    mostrar_grafo(grafo)
+# Encontrar las mejores rutas usando Dijkstra
+distancias, anteriores = dijkstra(grafo, estacion_salida)
+print("\nMejores rutas:")
+for destino, distancia in distancias.items():
+    print(f" {destino} con costo de {distancia}")
+mostrar_grafo(grafo)
