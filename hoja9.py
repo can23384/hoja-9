@@ -56,14 +56,14 @@ def dijkstra(grafo, estacion_salida):
 
 if __name__ == "__main__":
     grafo = crear_grafo()
-    mostrar_grafo(grafo)
     
+    estacion_salida = input("Ingrese la estación de salida: ")
     # Mostrar destinos desde una estación de salida
-    mostrar_destinos(grafo, "Pueblo Paleta")
+    mostrar_destinos(grafo, estacion_salida)
     
     # Encontrar las mejores rutas usando Dijkstra
-    distancias, anteriores = dijkstra(grafo, "Pueblo Paleta")
+    distancias, anteriores = dijkstra(grafo, estacion_salida)
     print("\nMejores rutas:")
     for destino, distancia in distancias.items():
-        print(f"A {destino} con costo de {distancia}")
+        print(f" {destino} con costo de {distancia}")
     mostrar_grafo(grafo)
