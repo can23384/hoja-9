@@ -5,6 +5,7 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 
+# Función para mostrar el grafo
 def mostrar_grafo(grafo):
     plt.figure(figsize=(8, 8))
     pos = nx.spring_layout(grafo)
@@ -14,6 +15,7 @@ def mostrar_grafo(grafo):
     plt.title("Mapa de rutas")
     plt.show()
     
+# Función para crear el grafo a partir del archivo rutas.txt
 def crear_grafo():
     grafo = nx.Graph()
     with open('rutas.txt', 'r', encoding='utf-8') as file:
@@ -23,6 +25,7 @@ def crear_grafo():
             grafo.add_edge(estacion_salida, estacion_destino, weight=costo)
     return grafo
 
+# Función para mostrar los destinos desde una estación de salida
 def mostrar_destinos(grafo, estacion_salida):
     destinos = list(grafo.neighbors(estacion_salida))
     print(f"Posibles destinos desde {estacion_salida}:")
@@ -30,6 +33,7 @@ def mostrar_destinos(grafo, estacion_salida):
         costo = grafo[estacion_salida][destino]['weight']
         print(f"{destino} - Costo: {costo}")
 
+# Función para aplicar el algoritmo de Dijkstra y encontrar las mejores rutas
 def dijkstra(grafo, estacion_salida):
     distancias = {estacion_salida: 0}
     anteriores = {}
@@ -61,10 +65,8 @@ def dijkstra(grafo, estacion_salida):
 
 grafo = crear_grafo()    
 estacion_salida = input("Ingrese la estación de salida: ")
-# Mostrar destinos desde una estación de salida
 mostrar_destinos(grafo, estacion_salida)
     
-# Encontrar las mejores rutas usando Dijkstra
 distancias, anteriores = dijkstra(grafo, estacion_salida)
 print("\nMejores rutas:")
 for destino, distancia in distancias.items():
